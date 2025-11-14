@@ -1,43 +1,68 @@
 import 'package:flutter/material.dart';
+import 'main2.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
-  runApp(const MainApp());
+  runApp(MyApp(navigatorKey: navigatorKey));
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  const MyApp({super.key, required this.navigatorKey});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      navigatorKey: navigatorKey,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/second': (context) => const SecondPage(),
+      },
+    );
+  }
+}
 
-        
-        appBar: AppBar(
-          title: const Text('Example App'),
-        ),
-        body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Example App'),
+      ),
+      body: Center(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Expanded(
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          color: Colors.blueAccent,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  color: Colors.blueAccent,
-                  child: const Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text('Hello World!'),
-                      SizedBox(height: 20, width: 200),
-                      Text('Additional Text'),
-                    ],
-                  ),
-                ),
+              Image.network(
+                'https://avatars.mds.yandex.net/i?id=9a1371e95061139e11d978fdf22cec83_l-3548851-images-thumbs&n=13', 
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
               ),
+              const SizedBox(height: 10),
+              const Text('Hello World!'),
+              const SizedBox(height: 20),
+              const Text('Additional Text'),
             ],
           ),
         ),
-             bottomNavigationBar: BottomNavigationBar(
+      ),
+    ],
+  ),
+),
+      bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -52,20 +77,21 @@ class MainApp extends StatelessWidget {
             label: 'Mail',
           ),
         ],
-       // currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-      //  onTap: _onItemTapped,
+        onTap: (index) {
+          if (index == 1) {
+            } else if (index == 2) {
+            Navigator.pushNamed(context, '/second'); 
+          }
+        },
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-             print(123);
-          },
-          backgroundColor: Colors.white,
-          child: const CircleAvatar(
-            radius: 50,
-            
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/second');
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.navigation),
       ),
-    ));
+    );
   }
 }
