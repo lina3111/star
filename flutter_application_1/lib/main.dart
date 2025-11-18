@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'main2.dart';
+import 'main3.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/second': (context) => const SecondPage(),
+        '/idk' : (context) => const BottomNavigationBarExampleApp(),
       },
     );
   }
@@ -80,10 +82,15 @@ class HomePage extends StatelessWidget {
         selectedItemColor: Colors.amber[800],
         onTap: (index) {
           if (index == 1) {
-            } else if (index == 2) {
-            Navigator.pushNamed(context, '/second'); 
-          }
+            } else if (index == 2) {}
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/second');
+        },
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.navigation),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
