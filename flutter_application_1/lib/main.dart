@@ -82,15 +82,14 @@ class HomePage extends StatelessWidget {
         selectedItemColor: Colors.amber[800],
         onTap: (index) {
           if (index == 1) {
-            } else if (index == 2) {}
+            Navigator.pushNamed(context, '/idk');
+            //добавить переход на др экран с помощью навигат
+            } 
+          else if (index == 2) {
+
+
+          }
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/second');
-        },
-        backgroundColor: Colors.white,
-        child: const Icon(Icons.navigation),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
