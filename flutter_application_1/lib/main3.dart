@@ -59,7 +59,10 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
 
 @override
 Widget build(BuildContext context) {
-  return FlutterMap(
+  return MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(title: Text ('Карта с красным маркером')),
+      body: FlutterMap(
     options: MapOptions(
       initialCenter: LatLng(51.509364, -0.128928), // Center the map over London
       initialZoom: 9.2,
@@ -94,6 +97,8 @@ Widget build(BuildContext context) {
         ],
       ),
     ],
+    ),
+    ),
   );
 }
 }
